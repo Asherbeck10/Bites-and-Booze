@@ -1,0 +1,12 @@
+.drink {
+    background-color:brown;
+    padding: 1%;
+}
+.drinks {
+    margin: auto;
+}
+
+.drinks-text{
+    border: 1px black solid;
+    height: 160px;
+}

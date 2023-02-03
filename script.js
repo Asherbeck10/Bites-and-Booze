@@ -1,7 +1,9 @@
+let cardsEl = document.querySelector('#food-cards')
 // event listener for search ingredient
 document.getElementById("search-button").addEventListener("click", function (event) {
     let dishSearch = document.getElementById("search-input").value;
     event.preventDefault();
+    cardsEl.innerHTML=``
 
     if (dishSearch === "") {
         let myModal = new bootstrap.Modal(document.getElementById('modal'));
@@ -9,6 +11,7 @@ document.getElementById("search-button").addEventListener("click", function (eve
     } else {
 
 
+        
         foodSearch(dishSearch)
     }
 });
@@ -21,7 +24,7 @@ document.getElementById("search-button").addEventListener("click", function (eve
 
 function foodSearch(dishSearch) {
 
-    let cardsEl = document.querySelector('#food-cards')
+    
     const options = {
         method: 'GET',
         headers: {

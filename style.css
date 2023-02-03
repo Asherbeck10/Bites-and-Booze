@@ -1,30 +1,44 @@
-.drink {
-    background-color:whitesmoke;
-    padding: 1%;
-}
-.drinks-card{
-    display:none;
-    margin: auto;
-    margin-top:1%;
-    height:auto;
+.jumbotron {
+    /* background-image: url(https://images.unsplash.com/photo-1517698229033-a12757632842?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2274&q=80); */
+    background-color: lavenderblush;
+    background-size: cover;
+    /* height: 30vh; */ 
 }
 
-.drink-btn{
-    width:35%;
-    border-radius:10px;
-    padding:1.5%; 
-    background-color:brown; 
-    color:white; 
-    margin:auto;
+#food-cards {
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.drink {
+    background-color: whitesmoke;
+    padding: 1%;
+}
+
+.drinks-card {
+    display: none;
+    margin: auto;
+    margin-top: 1%;
+    height: auto;
+}
+
+.drink-btn {
+    width: 35%;
+    border-radius: 10px;
+    padding: 1.5%;
+    background-color: brown;
+    color: white;
+    margin: auto;
     border: brown;
     font-family: 'Times New Roman', Times, serif;
     font-size: 20px;
 }
 
-.drink-btn:hover{
-    background-color:darkgrey
+.drink-btn:hover {
+    background-color: darkgrey
 }
 
-.drink-btn:active{
-    background-color:brown
+.drink-btn:active {
+    background-color: brown
 }

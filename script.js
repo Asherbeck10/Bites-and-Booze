@@ -1,3 +1,71 @@
+let cardsEl = document.querySelector('#food-cards')
+// event listener for search ingredient
+document.getElementById("search-button").addEventListener("click", function (event) {
+    let dishSearch = document.getElementById("search-input").value;
+    event.preventDefault();
+    cardsEl.innerHTML = ``
+
+    if (dishSearch === "") {
+        let myModal = new bootstrap.Modal(document.getElementById('modal'));
+        myModal.show();
+    } else {
+
+        foodSearch(dishSearch)
+    }
+});
+
+// let dishSearch="pizza"
+
+function foodSearch(dishSearch) {
+
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': '2a8fd49437mshbdf1ea1b79875a2p1a77e9jsn52c0b56f707a',
+            'X-RapidAPI-Host': 'edamam-recipe-search.p.rapidapi.com'
+        }
+    };
+
+    fetch(`https://edamam-recipe-search.p.rapidapi.com/search?q=${dishSearch}`, options)
+        .then(response => response.json())
+        .then(function (recipes) {
+
+
+            //creating 3 cards
+            for (let i = 0; i < 3; i++) {
+
+                let img = recipes.hits[i].recipe.image
+                let foodLabel = recipes.hits[i].recipe.label
+                let cuisineType = recipes.hits[i].recipe.cuisineType[0]
+                let ingredient = recipes.hits[i].recipe.ingredientLines
+                let ingredientList = JSON.stringify(ingredient)
+                let calories = Math.round(recipes.hits[i].recipe.calories)
+                let dishType = recipes.hits[i].recipe.dishType
+
+
+                let newDiv = document.createElement('div');
+                newDiv.innerHTML = `<div class="card" style="width: 18rem;">
+    <img src="${img}" class="card-img-top" alt="...">
+    <div class="card-body">
+    <h5 class="card-title">${foodLabel}</h5>
+    <p class="card-text"></p>
+    </div>
+    <ul class="list-group list-group-flush">
+    <li class="list-group-item">Cuisine: ${cuisineType}</li>
+    <li class="list-group-item">Calories per recipe: ${calories}</li>
+    <li class="list-group-item">Dish type: ${dishType}</li>
+    </ul>
+    <div class="card-body">
+    ${ingredientList}
+    </div>
+    </div>`
+                cardsEl.appendChild(newDiv)
+            }
+        })
+}
+
+
+//DRINKS API FETCH REQUEST
 let drinksURL = "https://api.api-ninjas.com/v1/cocktail?name="
 let drinkKey = "Qi651/P1cNZMlzbO7KcHFw==j6GIGW3DJULCUbIq"
 let foodURL = "https://api.edamam.com/api/recipes/v2?type=public&q="
@@ -6,67 +74,66 @@ let foodId = "&app_id=630342ea"
 let drinkAPI
 let foodAPI
 
-//DRINKS API FETCH REQUEST
 
 let drinksArray = [
-    "Alexander", 
-    "Americano", 
-    "Angel Face", 
-    "Aviation", 
-    "Bacardi", 
-    "Between The Sheets", 
-    "Casino", 
-    "Clover Club", 
-    "Daiquiri", 
+    "Alexander",
+    "Americano",
+    "Angel Face",
+    "Aviation",
+    "Bacardi",
+    "Between The Sheets",
+    "Casino",
+    "Clover Club",
+    "Daiquiri",
     "Derby",
-    "John Collins", 
-    "Manhattan", 
-    "Monkey Gland", 
-    "Negroni", 
-    "Old Fashioned", 
-    "Paradise", 
-    "Ramos Gin Fizz", 
-    "Rusty Nail", 
-    "Sazerac", 
-    "Screwdriver", 
-    "Sidecar", 
-    "Stinger", 
-    "Tuxedo", 
-    "Whiskey Sour", 
-    "White Lady", 
-    "Bellini", 
-    "Black Russian", 
-    "Bloody Mary", 
-    "Caipirinha", 
-    "Champagne Cocktail", 
-    "Cosmopolitan", 
-    "Cuba Libre", 
-    "French 75",  
-    "Golden Dream", 
-    "Grasshopper", 
-    "Harvey Wallbanger", 
-    "Irish Coffee", 
-    "Kir", 
-    "Long Island Iced Tea", 
-    "Mai Tai", 
-    "Margarita", 
-    "Mimosa", 
-    "Mint Julep", 
-    "Mojito", 
-    "Moscow Mule",  
-    "Rose", 
-    "Sea Breeze", 
-    "Sex On The Beach", 
-    "Singapore Sling", 
-    "Tequila Sunrise", 
-    "Bramble", 
-    "Martini", 
-    "Kamikaze", 
-    "Pisco Sour", 
-    "Vampiro", 
-    "Yellow Bird", 
-    "Daquiri", 
-    "Aperol spritz" 
+    "John Collins",
+    "Manhattan",
+    "Monkey Gland",
+    "Negroni",
+    "Old Fashioned",
+    "Paradise",
+    "Ramos Gin Fizz",
+    "Rusty Nail",
+    "Sazerac",
+    "Screwdriver",
+    "Sidecar",
+    "Stinger",
+    "Tuxedo",
+    "Whiskey Sour",
+    "White Lady",
+    "Bellini",
+    "Black Russian",
+    "Bloody Mary",
+    "Caipirinha",
+    "Champagne Cocktail",
+    "Cosmopolitan",
+    "Cuba Libre",
+    "French 75",
+    "Golden Dream",
+    "Grasshopper",
+    "Harvey Wallbanger",
+    "Irish Coffee",
+    "Kir",
+    "Long Island Iced Tea",
+    "Mai Tai",
+    "Margarita",
+    "Mimosa",
+    "Mint Julep",
+    "Mojito",
+    "Moscow Mule",
+    "Rose",
+    "Sea Breeze",
+    "Sex On The Beach",
+    "Singapore Sling",
+    "Tequila Sunrise",
+    "Bramble",
+    "Martini",
+    "Kamikaze",
+    "Pisco Sour",
+    "Vampiro",
+    "Yellow Bird",
+    "Daquiri",
+    "Aperol spritz"
 ]
 
 $(".drink-btn").on("click", function () {
@@ -114,5 +181,6 @@ $(".drink-btn").on("click", function () {
 
                 $(".drinks-card").eq(x).append(drinkName, drinkImage, ingredients, instructions, drinkCalories)
             })
-    }}
+    }
+}
 )

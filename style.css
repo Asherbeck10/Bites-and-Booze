@@ -1,12 +1,30 @@
 .drink {
-    background-color:brown;
+    background-color:whitesmoke;
     padding: 1%;
 }
-.drinks {
+.drinks-card{
+    display:none;
     margin: auto;
+    margin-top:1%;
+    height:auto;
 }
 
-.drinks-text{
-    border: 1px black solid;
-    height: 160px;
+.drink-btn{
+    width:35%;
+    border-radius:10px;
+    padding:1.5%; 
+    background-color:brown; 
+    color:white; 
+    margin:auto;
+    border: brown;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+}
+
+.drink-btn:hover{
+    background-color:darkgrey
+}
+
+.drink-btn:active{
+    background-color:brown
 }

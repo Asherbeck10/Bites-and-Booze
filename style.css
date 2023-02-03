@@ -1,13 +1,13 @@
-<<<<<<< HEAD
+
 .jumbotron {
     /* background-image: url(https://images.unsplash.com/photo-1517698229033-a12757632842?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2274&q=80); */
     background-color: lavenderblush;
     background-size: cover;
     height: 30vh;
-=======
-.container{
+}
+#food-cards{
     display: flex;
     justify-content: space-around;
  
->>>>>>> main
+ 
 }

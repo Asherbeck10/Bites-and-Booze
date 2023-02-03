@@ -1,6 +1,8 @@
 
+
 let dishSearch="pizza"
 foodSearch(dishSearch)
+
 function foodSearch(dishSearch) {
     
 let cardsEl=document.querySelector('#food-cards')

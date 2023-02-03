@@ -19,12 +19,16 @@ fetch('https://edamam-recipe-search.p.rapidapi.com/search?q=feijoada', options)
         let img=recipes.hits[i].recipe.image
         let foodLabel=recipes.hits[i].recipe.label
         let cuisineType=recipes.hits[i].recipe.cuisineType[0]
+        let ingredient=recipes.hits[i].recipe.ingredientLines
+        let ingredientList=JSON.stringify(ingredient)
+        console.log(ingredientList)
+     
         let newDiv=document.createElement('div');
         newDiv.innerHTML=`<div class="card" style="width: 18rem;">
     <img src="${img}" class="card-img-top" alt="...">
     <div class="card-body">
     <h5 class="card-title">${foodLabel}</h5>
-    <p class="card-text">.</p>
+    <p class="card-text">${cuisineType}</p>
     </div>
     <ul class="list-group list-group-flush">
     <li class="list-group-item">An item</li>
@@ -32,8 +36,7 @@ fetch('https://edamam-recipe-search.p.rapidapi.com/search?q=feijoada', options)
     <li class="list-group-item">A third item</li>
     </ul>
     <div class="card-body">
-    <a href="#" class="card-link">Card link</a>
-    <a href="#" class="card-link">Another link</a>
+    
     </div>
     </div>`
     cardsEl.appendChild(newDiv)

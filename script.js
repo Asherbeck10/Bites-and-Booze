@@ -19,7 +19,7 @@ fetch(`https://edamam-recipe-search.p.rapidapi.com/search?q=${dishSearch}`, opti
 
     //creating 3 cards
     for (let i = 0; i < 3; i++) {
-        console.log (recipes)
+       
         let img=recipes.hits[i].recipe.image
         let foodLabel=recipes.hits[i].recipe.label
         let cuisineType=recipes.hits[i].recipe.cuisineType[0]
@@ -51,5 +51,5 @@ fetch(`https://edamam-recipe-search.p.rapidapi.com/search?q=${dishSearch}`, opti
 }  
         
    
-	// .catch(err => console.error(err));
+
 

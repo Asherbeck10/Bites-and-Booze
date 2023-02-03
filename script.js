@@ -1,15 +1,16 @@
 // event listener for search ingredient
 document.getElementById("search-button").addEventListener("click", function (event) {
-    let ingredient = document.getElementById("search-input").value;
+    let dishSearch = document.getElementById("search-input").value;
     event.preventDefault();
+    foodSearch(dishSearch)
 
 });
 
 
 
 
-let dishSearch="pizza"
-foodSearch(dishSearch)
+// let dishSearch="pizza"
+
 
 function foodSearch(dishSearch) {
     

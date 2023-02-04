@@ -14,7 +14,7 @@ document.getElementById("search-button").addEventListener("click", function (eve
     }
 });
 
-// let dishSearch="pizza"
+//search function
 
 function foodSearch(dishSearch) {
 
@@ -37,8 +37,8 @@ function foodSearch(dishSearch) {
                 let img = recipes.hits[i].recipe.image
                 let foodLabel = recipes.hits[i].recipe.label
                 let cuisineType = recipes.hits[i].recipe.cuisineType[0]
-                let ingredient = recipes.hits[i].recipe.ingredientLines
-                let ingredientList = JSON.stringify(ingredient)
+                //let ingredient = recipes.hits[i].recipe.ingredientLines
+                let ingredientList = recipes.hits[i].recipe.ingredientLines.join()
                 let calories = Math.round(recipes.hits[i].recipe.calories)
                 let dishType = recipes.hits[i].recipe.dishType
 

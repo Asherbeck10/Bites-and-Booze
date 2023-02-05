@@ -1,4 +1,11 @@
 let cardsEl = document.querySelector('#food-cards')
+
+// Modal function
+function showModal() {
+    let myModal = new bootstrap.Modal(document.getElementById('modal'));
+    myModal.show();
+}
+
 // event listener for search ingredient
 document.getElementById("search-button").addEventListener("click", function (event) {
     let dishSearch = document.getElementById("search-input").value;
@@ -6,8 +13,7 @@ document.getElementById("search-button").addEventListener("click", function (eve
     cardsEl.innerHTML = ``
 
     if (dishSearch === "") {
-        let myModal = new bootstrap.Modal(document.getElementById('modal'));
-        myModal.show();
+        showModal();
     } else {
 
         foodSearch(dishSearch)

@@ -34,7 +34,11 @@ function foodSearch(dishSearch) {
 
     fetch(`https://edamam-recipe-search.p.rapidapi.com/search?q=${dishSearch}`, options)
         .then(response => response.json())
-        .then(function (recipes) {
+        .then(function (recipes) {console.log(recipes)
+            if (recipes.more===false) {
+                showModal()
+                
+            }
 
 
             //creating 3 cards

@@ -6,7 +6,16 @@ function showModal() {
     myModal.show();
 }
 
-// event listener for search ingredient
+// A function to load from local storage the last searched dish.
+function localStorageFood() {
+    let dishSearch = localStorage.getItem("lastSearchedFood");
+
+    if (dishSearch !== null) {
+        foodSearch(dishSearch);
+    }
+}
+
+// Event listener to display food cards.
 document.getElementById("search-button").addEventListener("click", function (event) {
     let dishSearch = document.getElementById("search-input").value;
     event.preventDefault();
@@ -16,7 +25,8 @@ document.getElementById("search-button").addEventListener("click", function (eve
         showModal();
     } else {
 
-        foodSearch(dishSearch)
+        foodSearch(dishSearch);
+        localStorage.setItem("lastSearchedFood", dishSearch);
     }
 });
 
@@ -190,3 +200,5 @@ $(".drink-btn").on("click", function () {
     }
 }
 )
+
+localStorageFood();

@@ -20,7 +20,7 @@ document.getElementById("search-button").addEventListener("click", function (eve
     }
 });
 
-// let dishSearch="pizza"
+// food search function
 
 function foodSearch(dishSearch) {
 
@@ -44,13 +44,13 @@ function foodSearch(dishSearch) {
                 let foodLabel = recipes.hits[i].recipe.label
                 let cuisineType = recipes.hits[i].recipe.cuisineType[0]
                 let ingredient = recipes.hits[i].recipe.ingredientLines
-                let ingredientList = JSON.stringify(ingredient)
+                let ingredientList =(ingredient).join()
                 let calories = Math.round(recipes.hits[i].recipe.calories)
                 let dishType = recipes.hits[i].recipe.dishType
 
 
                 let newDiv = document.createElement('div');
-                newDiv.innerHTML = `<div class="card" style="width: 18rem;">
+                newDiv.innerHTML = `<div class="card" style="width: 25rem;">
     <img src="${img}" class="card-img-top" alt="...">
     <div class="card-body">
     <h5 class="card-title">${foodLabel}</h5>
@@ -60,10 +60,10 @@ function foodSearch(dishSearch) {
     <li class="list-group-item">Cuisine: ${cuisineType}</li>
     <li class="list-group-item">Calories per recipe: ${calories}</li>
     <li class="list-group-item">Dish type: ${dishType}</li>
+    <li class="list-group-item">Dish type: ${ingredientList}</li>
+    
     </ul>
-    <div class="card-body">
-    ${ingredientList}
-    </div>
+
     </div>`
                 cardsEl.appendChild(newDiv)
             }

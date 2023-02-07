@@ -127,6 +127,15 @@ function showModal() {
     myModal.show();
 }
 
+// A function to load dishes from local storage.
+function loadFromLocalStorage() {
+    let dishSearch = localStorage.getItem("lastSearchedFood");
+
+    if (dishSearch !== null) {
+        foodSearch(dishSearch);
+    }
+}
+
 // Event listener to display food cards.
 document.getElementById("search-button").addEventListener("click", function (event) {
     let dishSearch = document.getElementById("search-input").value;
@@ -138,7 +147,8 @@ document.getElementById("search-button").addEventListener("click", function (eve
         showModal();
     } else {
 
-        foodSearch(dishSearch)
+        foodSearch(dishSearch);
+        localStorage.setItem("lastSearchedFood", dishSearch);
     }
 });
 
@@ -275,3 +285,4 @@ document.querySelector(".drink-btn").addEventListener("click", function () {
 });
 
 displayMoodList();
+loadFromLocalStorage();

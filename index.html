@@ -13,12 +13,19 @@
 
 <body>
 
+  <!-- Header section -->
   <header>
+
+    <!-- Jumbotron -->
     <div class="jumbotron jumbotron-fluid p-5">
       <div class="container column text-center">
         <h1 class="display-4">Bites and Booze</h1>
         <p class="lead">Find everyday cooking inspiration. Discover recipes, cooks and something else based on
           the food you love!</p>
+
+
+
+        <!-- Form -->
         <form id="search-form" class="form col-lg-5 mx-auto">
           <div class="input-group">
             <input type="text" id="search-input" class="form-control" placeholder="What would you like to cook?"
@@ -31,6 +38,7 @@
       </div>
     </div>
 
+    <!-- Modal -->
     <div id="modal" class="modal fade" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -49,14 +57,18 @@
     </div>
   </header>
 
-  <section class=container id="food-cards"></section>
+  <!-- Food section -->
+  <section class="container mt-4">
+    <div id="food-cards" class="card-group"></div>
+  </section>
 
-  <section id="drink-cards">
-    <div class="row drink">
-      <div class="row"><button type="button" class="drink-btn">Feeling lucky? Try a Cocktail</button></div>
-      <div class="card col-3 drinks-card"></div>
-      <div class="card col-3 drinks-card"></div>
-      <div class="card col-3 drinks-card"></div>
+
+  <!-- Drinks section -->
+  <section class="container mt-4">
+    <div class="text-center">
+      <button type="button" class="btn btn-primary drink-btn">Feeling lucky? Try a Cocktail</button>
+    </div>
+    <div id="drink-cards" class="card-group mt-4">
     </div>
   </section>
 

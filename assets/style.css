@@ -4,6 +4,10 @@
     background-size: cover;
 }
 
+.jumbotron h1{
+    font-family: 'Unbounded', cursive;
+}
+
 .drink-btn{
     background-color:brown;
     color: white;

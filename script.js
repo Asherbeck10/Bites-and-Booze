@@ -167,11 +167,14 @@ function shuffleArray(array) {
     return array;
 }
 
+let drinkHistory = [];
 // Event listener to display drink cards.
+
+
 document.querySelector(".drink-btn").addEventListener("click", function () {
     document.getElementById("drink-cards").innerHTML = "";
     shuffleArray(drinksArray);
-
+    drinkHistory = [];
     for (let index = 0; index < drinksArray.length && index < 3; index++) {
         // let randomDrinkName = Math.floor((Math.random() * drinksArray.length));
         // let randomDrinkToFetch = drinksArray[randomDrinkName];
@@ -212,5 +215,68 @@ document.querySelector(".drink-btn").addEventListener("click", function () {
                 </div>`;
                 document.getElementById("drink-cards").appendChild(divCard);
             });
+
+            
+            drinkHistory.push(drinksArray[index])
+            console.log(drinkHistory)
+            localStorage.setItem("drinkHistory", JSON.stringify(drinkHistory))
+
+            
+
+            
     }
 });
+
+function getLastDrink(){
+    if(localStorage.getItem("drinkHistory")){
+        drinkHistory = JSON.parse(localStorage.getItem("drinkHistory"))
+    }
+    for (let d = 0; d < drinkHistory.length && d < 3; d++) {
+        // let randomDrinkName = Math.floor((Math.random() * drinksArray.length));
+        // let randomDrinkToFetch = drinksArray[randomDrinkName];
+        let drinkAPI = drinksURL + drinkHistory[d];
+        // let foodAPI = foodURL + randomDrinkToFetch + foodId + foodKey + "&dishType=alcohol cocktail";
+        let foodAPI = foodURL + drinkHistory[d] + foodId + foodKey + "&dishType=alcohol cocktail";
+
+        Promise.all([
+            fetch(foodAPI),
+            fetch(drinkAPI, {
+                headers: {
+                    "X-Api-Key": "Qi651/P1cNZMlzbO7KcHFw==j6GIGW3DJULCUbIq"
+                }
+            })
+        ])
+            .then(function (response) {
+                return Promise.all(response.map(function (response) {
+                    return response.json();
+                }))
+            })
+
+            .then(function (results) {
+                let image = results[0];
+                let drinksData = results[1];
+                let divCard = document.createElement("div");
+                divCard.classList.add("card");
+                divCard.innerHTML = `
+                <img class="card-img-top" src="${image.hits[0].recipe.image}"></img>
+                <div class="card-body">
+                <h5 class="card-title">${drinkHistory[d]}</h5>
+                <ul>
+                ${drinksData[0].ingredients.map(ingredient => {
+                    return `<li>${ingredient}</li>`
+                }).join("")}   
+            </ul>
+                <p class="card-text"> Instructions: ${drinksData[0].instructions} </p>
+                <p class="card-text"> Calories: ${Math.round(image.hits[0].recipe.calories)} Kcal. </p>
+                </div>`;
+                document.getElementById("drink-cards").appendChild(divCard);
+            });
+            
+    }
+
+}
+
+
+
+getLastDrink()
+

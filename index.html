@@ -12,7 +12,6 @@
 </head>
 
 <body>
-
   <!-- Header section -->
   <header>
 
@@ -23,38 +22,64 @@
         <p class="lead">Find everyday cooking inspiration. Discover recipes, cooks and something else based on
           the food you love!</p>
 
+        <!-- Tabs -->
+        <ul class="nav nav-tabs justify-content-center mb-4" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
+              role="tab" aria-controls="home" aria-selected="true">Search by food</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"
+              role="tab" aria-controls="profile" aria-selected="false">Search by mood</button>
+          </li>
+        </ul>
 
+        <!-- Tabs content -->
+        <div class="tab-content" id="myTabContent">
 
-        <!-- Form -->
-        <form id="search-form" class="form col-lg-5 mx-auto">
-          <div class="input-group">
-            <input type="text" id="search-input" class="form-control" placeholder="What would you like to cook?"
-              aria-label="Search" aria-describedby="basic-addon2">
-            <div class="input-group-append">
-              <button id="search-button" class="btn btn-outline-secondary" type="submit">Search</button>
-            </div>
+          <!-- Food form -->
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <form id="search-form" class="form col-lg-5 mx-auto">
+              <div class="input-group">
+                <input type="text" id="search-input" class="form-control" placeholder="What would you like to cook?"
+                  aria-label="Search" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                  <button id="search-button" class="btn btn-outline-secondary" type="submit">Search</button>
+                </div>
+              </div>
+            </form>
           </div>
-        </form>
-      </div>
-    </div>
 
-    <!-- Modal -->
-    <div id="modal" class="modal fade" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Ingredient or Dish not found</h5>
-          </div>
-          <div class="modal-body">
-            <p>Please type another Ingredient or Dish.</p>
-          </div>
-          <div class="modal-footer">
-            <button data-bs-target="#modal" type="button" class="btn btn-secondary"
-              data-bs-dismiss="modal">Close</button>
+          <!-- Mood form -->
+          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <form id="search-mood-form" class="form col-lg-5">
+              <div class="input-group">
+                <select id="mood-list" class="form-select mx-auto" aria-label="Default select example">
+                  <option selected>How are you feeling?</option>
+                </select>
+              </div>
+            </form>
           </div>
         </div>
       </div>
-    </div>
+
+      <!-- Modal -->
+      <div id="modal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Ingredient or Dish not found</h5>
+            </div>
+            <div class="modal-body">
+              <p>Please type another Ingredient or Dish.</p>
+            </div>
+            <div class="modal-footer">
+              <button data-bs-target="#modal" type="button" class="btn btn-secondary"
+                data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
   </header>
 
   <!-- Food section -->

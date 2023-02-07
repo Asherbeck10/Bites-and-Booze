@@ -227,6 +227,8 @@ document.querySelector(".drink-btn").addEventListener("click", function () {
     }
 });
 
+
+
 function getLastDrink(){
     if(localStorage.getItem("drinkHistory")){
         drinkHistory = JSON.parse(localStorage.getItem("drinkHistory"))

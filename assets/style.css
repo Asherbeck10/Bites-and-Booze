@@ -1,12 +1,21 @@
 .jumbotron {
     /* background-image: url(); */
-    background-color: lavenderblush;
+    background-color: rgb(86, 20, 42);
     background-size: cover;
+    color: white;
 }
 
 .jumbotron h1{
     font-family: 'Unbounded', cursive;
 }
+
+.nav-item button{
+    color: white !important;
+}
+.active{
+    color: rgb(58, 55, 55) !important;
+}
+
 
 .drink-btn{
     background-color:brown;

@@ -72,6 +72,48 @@ let drinksArray = [
     "Yellow Bird"
 ];
 
+let moodAsFoods = {
+    Calm: "Green",
+    Cheerful: "Yellow",
+    Content: "Green",
+    Elegant: "Purple",
+    Energetic: "Red",
+    Enthusiastic: "Orange",
+    Excited: "Red",
+    Happy: "Yellow",
+    Innocent: "White",
+    Luxurious: "Purple",
+    Meditative: "Purple",
+    Mysterious: "Black",
+    Optimistic: "Yellow",
+    Peaceful: "Blue",
+    Passionate: "Red",
+    Playful: "Pink",
+    Pure: "White",
+    Reliable: "Brown",
+    Rejuvenating: "Green",
+    Romantic: "Pink",
+    Sad: "Blue",
+    Serene: "Blue",
+    Sophisticated: "Black",
+    Sturdy: "Brown",
+    Trustworthy: "Blue",
+    Warm: "Orange"
+}
+
+let colorAsDishes = {
+    Red: ["Pizza", "Lasagna", "Tomato Soup", "Gazpacho", "Watermelon", "Red Pepper Hummus"],
+    Green: ["Sushi", "Green salad", "Green Smoothie", "Matcha Latte", "Guacamole"],
+    Yellow: ["Tacos", "Biryani", "Pasta", "Curry", "Paella", "Fish and chips", "Fried chicken", "Lemon Chicken", "Yellow Curry", "Yellow Rice", "Yellow"],
+    Brown: ["Pad Thai", "Hamburger", "Ramen", "Peking duck", "Falafel", "Pho", "Beef Wellington", "Poutine", "Chocolate Smoothie", "Brown Rice"],
+    Black: ["Black Rice", "Black Bean Soup", "Squid ink", "Black sesame"],
+    White: ["Fried Rice", "Moussaka", "Chiles en nogada", "Spaghetti carbonara", "Beef stroganoff", "Crepes", "Cauliflower Rice", "Coconut Milk", "Garlic Mashed Potatoes"],
+    Orange: ["Tandoori chicken", "Shrimp scampi", "Carrot", "Pumpkin Soup", "Sweet Potato Fries", "Orange Juice"],
+    Pink: ["Ceviche", "Pink Grapefruit", "Strawberry Yogurt", "Pink Lemonade", "Watermelon Salsa", "Salmon"],
+    Purple: ["Beets", "Purple", "Purple Potato Salad", "Purple cabbage", "Purple Smoothie"],
+    Blue: ["Blueberries", "Blueberry Muffins", "Blackberry smoothie"]
+};
+
 //APIs
 let drinksURL = "https://api.api-ninjas.com/v1/cocktail?name=";
 let drinkKey = "Qi651/P1cNZMlzbO7KcHFw==j6GIGW3DJULCUbIq";
@@ -85,6 +127,15 @@ function showModal() {
     myModal.show();
 }
 
+// A function to load dishes from local storage.
+function loadFromLocalStorage() {
+    let dishSearch = localStorage.getItem("lastSearchedFood");
+
+    if (dishSearch !== null) {
+        foodSearch(dishSearch);
+    }
+}
+
 // Event listener to display food cards.
 document.getElementById("search-button").addEventListener("click", function (event) {
     let dishSearch = document.getElementById("search-input").value;
@@ -96,7 +147,8 @@ document.getElementById("search-button").addEventListener("click", function (eve
         showModal();
     } else {
 
-        foodSearch(dishSearch)
+        foodSearch(dishSearch);
+        localStorage.setItem("lastSearchedFood", dishSearch);
     }
 });
 
@@ -113,6 +165,9 @@ function foodSearch(dishSearch) {
     fetch(`https://edamam-recipe-search.p.rapidapi.com/search?q=${dishSearch}`, options)
         .then(response => response.json())
         .then(function (recipes) {
+            if (recipes.more === false) {
+                showModal()
+            }
 
             //creating 3 cards
             for (let i = 0; i < 3; i++) {
@@ -149,18 +204,13 @@ function foodSearch(dishSearch) {
         })
 }
 
-// A function to shuffle the drinks array.
+// A function to shuffle an array.
 function shuffleArray(array) {
     let currentIndex = array.length, randomIndex;
 
-    // While there remain elements to shuffle.
     while (currentIndex != 0) {
-
-        // Pick a remaining element.
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex--;
-
-        // And swap it with the current element.
         [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
     }
 
@@ -168,6 +218,23 @@ function shuffleArray(array) {
 }
 
 let drinkHistory = [];
+// A function to display a mood list.
+function displayMoodList() {
+    for (const key in moodAsFoods) {
+        document.getElementById("mood-list").innerHTML += `
+            <option value="${moodAsFoods[key]}">${key}</option>
+            `;
+
+    }
+}
+// Event listener to convert each mood into a dish and display it as cards.
+document.getElementById("mood-list").addEventListener("change", function (event) {
+    cardsEl.innerHTML = "";
+    let color = event.target.value;
+    let dishesArray = colorAsDishes[color];
+    shuffleArray(dishesArray);
+    foodSearch(dishesArray[0]);
+});
 // Event listener to display drink cards.
 
 
@@ -228,7 +295,6 @@ document.querySelector(".drink-btn").addEventListener("click", function () {
 });
 
 
-
 function getLastDrink(){
     if(localStorage.getItem("drinkHistory")){
         drinkHistory = JSON.parse(localStorage.getItem("drinkHistory"))
@@ -279,6 +345,6 @@ function getLastDrink(){
 }
 
 
-
 getLastDrink()
-
+displayMoodList();
+loadFromLocalStorage();

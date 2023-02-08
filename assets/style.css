@@ -1,9 +1,9 @@
-body{
+body {
     background-image: url(./images/background.jpg);
     background-size: cover;
 }
 
-h5{
+h5 {
     font-family: 'Unbounded', cursive;
 }
 
@@ -13,27 +13,43 @@ h5{
     color: white;
 }
 
-.jumbotron h1{
+.jumbotron h1 {
     font-family: 'Unbounded', cursive;
 }
 
-.nav-item button{
-    color: rgb(156, 125, 125) !important;
+.nav-item button {
+    color: rgb(255, 255, 255) !important;
+
 }
 
+.nav-item button.active {
+    color: rgb(86, 20, 42) !important;
+}
 
-.drink-btn{
-    background-color:rgb(86, 20, 42);
+.btn-outline-secondary {
+    color: rgb(255, 255, 255) !important;
+    border-color: rgb(255, 255, 255) !important;
+}
+
+.btn-outline-secondary:hover {
+    color: rgb(53, 52, 52) !important;
+    border-color: rgb(86, 20, 42) !important;
+
+}
+
+.drink-btn {
+    background-color: rgb(86, 20, 42);
     color: white;
     border-color: rgb(86, 20, 42);
 }
-.drink-btn:hover{
+
+.drink-btn:hover {
     background-color: grey;
     border-color: grey;
 }
 
 
-.drink-btn:active{
-    background-color:rgb(86, 20, 42);
+.drink-btn:active {
+    background-color: rgb(86, 20, 42);
     border-color: rgb(86, 20, 42)
 }

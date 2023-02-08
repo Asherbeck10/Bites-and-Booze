@@ -16,7 +16,8 @@ You can view the live application here: https://asherbeck10.github.io/Bites-and-
 ## Future Development
 Bites and Booze plans on adding more features as the website progesses, such as:
 * An increased recipe database via more APIs
-* Advanced searches based on dietary preferences, allergies, prep time, calories, and more
+* Advanced searches based on dietary preferences, cuisines, allergies, prep time, calories, and more
 * Develop a mailing list for subscribers to communicate new recipes or other updates
 * A feature that allows users to create an account and save recipes
+* Allowing users to search for nearby grocery stores or restaurants
 

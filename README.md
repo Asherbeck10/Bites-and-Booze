@@ -1,6 +1,13 @@
 # Bites and Booze
 ## Overview
-Bites and Booze is a web application that users can come to when they're in need of a little culinary inspiration! This app will provide users with recipes for both food and cocktails. The most recent searches and history for both food and drink are saved to local storage, so if a user leaves and comes back to the page, their most recent history will render upon loading the page.
+Bites and Booze is a web application that users can come to when they're in need of a little culinary inspiration! This app will provide users with recipes for both food and cocktails. Users can search for their favorite ingredients or dishes. 
+
+Some technical specs include:
+* Website built with HTML, CSS, and JavaScript
+* Bootstrap used in website design
+* Edamam API used to pull food recipes and cocktail drink images 
+* API Ninjas Cocktail API used to pull cocktail recipes
+* Most recent searches are saved to local storage
 
 ## How to Use
 * Upon loading, a user can search by a specific dish (i.e. "pizza" or "lasagna") or by a specific ingredient (i.e. "chicken", "spinach", or "cheese"), by typing the word into the search bar. 

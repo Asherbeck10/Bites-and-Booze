@@ -71,7 +71,7 @@ let drinksArray = [
     "White Lady",
     "Yellow Bird"
 ];
-
+let drinkHistory = [];
 let moodAsFoods = {
     Calm: "Green",
     Cheerful: "Yellow",
@@ -100,7 +100,6 @@ let moodAsFoods = {
     Trustworthy: "Blue",
     Warm: "Orange"
 }
-
 let colorAsDishes = {
     Red: ["Pizza", "Lasagna", "Tomato Soup", "Gazpacho", "Watermelon", "Red Pepper Hummus"],
     Green: ["Sushi", "Green salad", "Green Smoothie", "Matcha Latte", "Guacamole"],
@@ -127,7 +126,7 @@ function showModal() {
     myModal.show();
 }
 
-// A function to load dishes from local storage.
+// A function to get dishes from local storage.
 function loadFromLocalStorage() {
     let dishSearch = localStorage.getItem("lastSearchedFood");
 
@@ -176,11 +175,9 @@ function foodSearch(dishSearch) {
                 let foodLabel = recipes.hits[i].recipe.label;
                 let cuisineType = recipes.hits[i].recipe.cuisineType[0];
                 let ingredient = recipes.hits[i].recipe.ingredientLines;
-                // let ingredientList = ingredient.join(", ");
                 let calories = Math.round(recipes.hits[i].recipe.calories);
                 let dishType = recipes.hits[i].recipe.dishType;
                 let recipeLink = recipes.hits[i].recipe.url
-                
 
                 let newDiv = document.createElement('div');
                 newDiv.classList.add("card");
@@ -220,16 +217,15 @@ function shuffleArray(array) {
     return array;
 }
 
-let drinkHistory = [];
 // A function to display a mood list.
 function displayMoodList() {
     for (const key in moodAsFoods) {
         document.getElementById("mood-list").innerHTML += `
             <option value="${moodAsFoods[key]}">${key}</option>
             `;
-
     }
 }
+
 // Event listener to convert each mood into a dish and display it as cards.
 document.getElementById("mood-list").addEventListener("change", function (event) {
     cardsEl.innerHTML = "";
@@ -238,18 +234,14 @@ document.getElementById("mood-list").addEventListener("change", function (event)
     shuffleArray(dishesArray);
     foodSearch(dishesArray[0]);
 });
+
 // Event listener to display drink cards.
-
-
 document.querySelector(".drink-btn").addEventListener("click", function () {
     document.getElementById("drink-cards").innerHTML = "";
     shuffleArray(drinksArray);
     drinkHistory = [];
     for (let index = 0; index < drinksArray.length && index < 3; index++) {
-        // let randomDrinkName = Math.floor((Math.random() * drinksArray.length));
-        // let randomDrinkToFetch = drinksArray[randomDrinkName];
         let drinkAPI = drinksURL + drinksArray[index];
-        // let foodAPI = foodURL + randomDrinkToFetch + foodId + foodKey + "&dishType=alcohol cocktail";
         let foodAPI = foodURL + drinksArray[index] + foodId + foodKey + "&dishType=alcohol cocktail";
 
         Promise.all([
@@ -290,27 +282,19 @@ document.querySelector(".drink-btn").addEventListener("click", function () {
                 document.getElementById("drink-cards").appendChild(divCard);
             });
 
-
-        drinkHistory.push(drinksArray[index])
-        console.log(drinkHistory)
-        localStorage.setItem("drinkHistory", JSON.stringify(drinkHistory))
-
-
-
-
+        drinkHistory.push(drinksArray[index]);
+        // console.log(drinkHistory);
+        localStorage.setItem("drinkHistory", JSON.stringify(drinkHistory));
     }
 });
 
-
+// A function to get drinks from local storage.
 function getLastDrink() {
     if (localStorage.getItem("drinkHistory")) {
         drinkHistory = JSON.parse(localStorage.getItem("drinkHistory"))
     }
     for (let d = 0; d < drinkHistory.length && d < 3; d++) {
-        // let randomDrinkName = Math.floor((Math.random() * drinksArray.length));
-        // let randomDrinkToFetch = drinksArray[randomDrinkName];
         let drinkAPI = drinksURL + drinkHistory[d];
-        // let foodAPI = foodURL + randomDrinkToFetch + foodId + foodKey + "&dishType=alcohol cocktail";
         let foodAPI = foodURL + drinkHistory[d] + foodId + foodKey + "&dishType=alcohol cocktail";
 
         Promise.all([
@@ -350,12 +334,9 @@ function getLastDrink() {
                 </div>`;
                 document.getElementById("drink-cards").appendChild(divCard);
             });
-
     }
-
 }
 
-
-getLastDrink()
+getLastDrink();
 displayMoodList();
 loadFromLocalStorage();

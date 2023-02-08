@@ -151,6 +151,46 @@ document.getElementById("search-button").addEventListener("click", function (eve
     }
 });
 
+// A function to display the dishes on cards.
+function displayDishCards(recipes) {
+    cardsEl.setAttribute("style", "visibility: hidden; opacity: 0;");
+    for (let index = 0; index < 3; index++) {
+
+        let img = recipes.hits[index].recipe.image;
+        let foodLabel = recipes.hits[index].recipe.label;
+        let cuisineType = recipes.hits[index].recipe.cuisineType[0];
+        let ingredient = recipes.hits[index].recipe.ingredientLines;
+        let calories = Math.round(recipes.hits[index].recipe.calories);
+        let dishType = recipes.hits[index].recipe.dishType;
+        let recipeLink = recipes.hits[index].recipe.url;
+
+        let newDiv = document.createElement('div');
+        newDiv.classList.add("card");
+        newDiv.innerHTML = `
+            <img class="card-img-top" src="${img}" alt="food image of ${foodLabel}">
+            <div class="card-body">
+                <h5 class="card-title">${foodLabel}</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Cuisine: ${cuisineType}</li>
+                <li class="list-group-item">Calories per recipe: ${calories}</li>
+                <li class="list-group-item">Dish type: ${dishType}</li>
+            </ul>
+            <div class="card-body">
+                <ul>
+                    ${ingredient.map(ingredient => {
+            return `<li>${ingredient}</li>`
+        }).join("")}   
+                </ul>
+                <a href="${recipeLink}" target="blank">Click here for the full recipe!</a>
+            </div>`;
+        cardsEl.appendChild(newDiv);
+    }
+    setTimeout(() => {
+        cardsEl.setAttribute("style", "visibility: visible; opacity: 1;");
+    }, 500);
+}
+
 // A function to fetch food recipes.
 function foodSearch(dishSearch) {
     const options = {
@@ -165,41 +205,9 @@ function foodSearch(dishSearch) {
         .then(response => response.json())
         .then(function (recipes) {
             if (recipes.more === false) {
-                showModal()
-            }
-
-            //creating 3 cards
-            for (let i = 0; i < 3; i++) {
-
-                let img = recipes.hits[i].recipe.image;
-                let foodLabel = recipes.hits[i].recipe.label;
-                let cuisineType = recipes.hits[i].recipe.cuisineType[0];
-                let ingredient = recipes.hits[i].recipe.ingredientLines;
-                let calories = Math.round(recipes.hits[i].recipe.calories);
-                let dishType = recipes.hits[i].recipe.dishType;
-                let recipeLink = recipes.hits[i].recipe.url
-
-                let newDiv = document.createElement('div');
-                newDiv.classList.add("card");
-                newDiv.innerHTML = `
-                    <img class="card-img-top" src="${img}" alt="food image of ${foodLabel}">
-                    <div class="card-body">
-                        <h5 class="card-title">${foodLabel}</h5>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Cuisine: ${cuisineType}</li>
-                        <li class="list-group-item">Calories per recipe: ${calories}</li>
-                        <li class="list-group-item">Dish type: ${dishType}</li>
-                    </ul>
-                    <div class="card-body">
-                        <ul>
-                            ${ingredient.map(ingredient => {
-                    return `<li>${ingredient}</li>`
-                }).join("")}   
-                        </ul>
-                        <a href="${recipeLink}" target="blank">Click here for the full recipe!</a>
-                    </div>`;
-                cardsEl.appendChild(newDiv);
+                showModal();
+            } else {
+                displayDishCards(recipes);
             }
         })
 }

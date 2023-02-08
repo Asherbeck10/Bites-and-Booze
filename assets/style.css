@@ -48,7 +48,6 @@ h5 {
     border-color: grey;
 }
 
-
 .drink-btn:active {
     background-color: rgb(86, 20, 42);
     border-color: rgb(86, 20, 42)
@@ -63,7 +62,10 @@ h5 {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-
 #food-cards {
+    transition: opacity 0.5s;
+}
+
+#drink-cards {
     transition: opacity 0.5s;
 }

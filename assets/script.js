@@ -52,7 +52,6 @@ let drinksArray = [
     "Pink Lady",
     "Piña Colada",
     "Planter's Punch",
-    "Ramos Gin Fizz",
     "Rob Roy",
     "Rose",
     "Rusty Nail",
@@ -234,6 +233,48 @@ function displayMoodList() {
     }
 }
 
+// A function to fetch drinks.
+function fetchDrink(drinkName) {
+    let drinkAPI = drinksURL + drinkName;
+    let foodAPI = foodURL + drinkName + foodId + foodKey + "&dishType=alcohol cocktail";
+
+    return Promise.all([
+        fetch(foodAPI, {
+            headers: {
+                "Accept-Language": "en"
+            }
+        }),
+        fetch(drinkAPI, {
+            headers: {
+                "X-Api-Key": "Qi651/P1cNZMlzbO7KcHFw==j6GIGW3DJULCUbIq"
+            }
+        })
+    ])
+        .then(function (response) {
+            return Promise.all(response.map(function (response) {
+                return response.json();
+            }))
+        }).then(function (responses) {
+            let image = responses[0];
+            let drinksData = responses[1];
+            let divCard = document.createElement("div");
+            divCard.classList.add("card");
+            divCard.innerHTML = `
+    <img class="card-img-top" src="${image.hits[0].recipe.image}"></img>
+    <div class="card-body">
+    <h5 class="card-title">${drinkName}</h5>
+    <ul>
+    ${drinksData[0].ingredients.map(ingredient => {
+                return `<li>${ingredient}</li>`
+            }).join("")}   
+</ul>
+    <p class="card-text"> Instructions: ${drinksData[0].instructions} </p>
+    <p class="card-text"> Calories: ${Math.round(image.hits[0].recipe.calories)} Kcal. </p>
+    </div>`;
+            document.getElementById("drink-cards").appendChild(divCard);
+        })
+}
+
 // Event listener to convert each mood into a dish and display it as cards.
 document.getElementById("mood-list").addEventListener("change", function (event) {
     cardsEl.innerHTML = "";
@@ -246,103 +287,38 @@ document.getElementById("mood-list").addEventListener("change", function (event)
 // Event listener to display drink cards.
 document.querySelector(".drink-btn").addEventListener("click", function () {
     document.getElementById("drink-cards").innerHTML = "";
+    document.getElementById("drink-cards").setAttribute("style", "visibility: hidden; opacity: 0;");
     shuffleArray(drinksArray);
     drinkHistory = [];
+
     for (let index = 0; index < drinksArray.length && index < 3; index++) {
-        let drinkAPI = drinksURL + drinksArray[index];
-        let foodAPI = foodURL + drinksArray[index] + foodId + foodKey + "&dishType=alcohol cocktail";
+        let drinkName = drinksArray[index];
+        fetchDrink(drinkName)
 
-        Promise.all([
-            fetch(foodAPI, {
-                headers: {
-                    "Accept-Language": "en"
-                }
-            }),
-            fetch(drinkAPI, {
-                headers: {
-                    "X-Api-Key": "Qi651/P1cNZMlzbO7KcHFw==j6GIGW3DJULCUbIq"
-                }
-            })
-        ])
-            .then(function (response) {
-                return Promise.all(response.map(function (response) {
-                    return response.json();
-                }))
-            })
-
-            .then(function (results) {
-                let image = results[0];
-                let drinksData = results[1];
-                let divCard = document.createElement("div");
-                divCard.classList.add("card");
-                divCard.innerHTML = `
-                <img class="card-img-top" src="${image.hits[0].recipe.image}"></img>
-                <div class="card-body">
-                <h5 class="card-title">${drinksArray[index]}</h5>
-                <ul>
-                ${drinksData[0].ingredients.map(ingredient => {
-                    return `<li>${ingredient}</li>`
-                }).join("")}   
-            </ul>
-                <p class="card-text"> Instructions: ${drinksData[0].instructions} </p>
-                <p class="card-text"> Calories: ${Math.round(image.hits[0].recipe.calories)} Kcal. </p>
-                </div>`;
-                document.getElementById("drink-cards").appendChild(divCard);
-            });
-
-        drinkHistory.push(drinksArray[index]);
+        drinkHistory.push(drinkName);
         // console.log(drinkHistory);
         localStorage.setItem("drinkHistory", JSON.stringify(drinkHistory));
     }
+
+    setTimeout(() => {
+        document.getElementById("drink-cards").setAttribute("style", "visibility: visible; opacity: 1;");
+    }, 1500)
 });
 
 // A function to get drinks from local storage.
 function getLastDrink() {
+    document.getElementById("drink-cards").setAttribute("style", "visibility: hidden; opacity: 0;");
     if (localStorage.getItem("drinkHistory")) {
         drinkHistory = JSON.parse(localStorage.getItem("drinkHistory"))
     }
     for (let d = 0; d < drinkHistory.length && d < 3; d++) {
-        let drinkAPI = drinksURL + drinkHistory[d];
-        let foodAPI = foodURL + drinkHistory[d] + foodId + foodKey + "&dishType=alcohol cocktail";
+        let drinkName = drinkHistory[d];
+        fetchDrink(drinkName)
 
-        Promise.all([
-            fetch(foodAPI, {
-                headers: {
-                    "Accept-Language": "en"
-                }
-            }),
-            fetch(drinkAPI, {
-                headers: {
-                    "X-Api-Key": "Qi651/P1cNZMlzbO7KcHFw==j6GIGW3DJULCUbIq",
-                }
-            })
-        ])
-            .then(function (response) {
-                return Promise.all(response.map(function (response) {
-                    return response.json();
-                }))
-            })
-
-            .then(function (results) {
-                let image = results[0];
-                let drinksData = results[1];
-                let divCard = document.createElement("div");
-                divCard.classList.add("card");
-                divCard.innerHTML = `
-                <img class="card-img-top" src="${image.hits[0].recipe.image}"></img>
-                <div class="card-body">
-                <h5 class="card-title">${drinkHistory[d]}</h5>
-                <ul>
-                ${drinksData[0].ingredients.map(ingredient => {
-                    return `<li>${ingredient}</li>`
-                }).join("")}   
-            </ul>
-                <p class="card-text"> Instructions: ${drinksData[0].instructions} </p>
-                <p class="card-text"> Calories: ${Math.round(image.hits[0].recipe.calories)} Kcal. </p>
-                </div>`;
-                document.getElementById("drink-cards").appendChild(divCard);
-            });
     }
+    setTimeout(() => {
+        document.getElementById("drink-cards").setAttribute("style", "visibility: visible; opacity: 1;");
+    }, 1500)
 }
 
 getLastDrink();

@@ -1,5 +1,9 @@
+body{
+    background-image: url(./images/background.jpg);
+    background-size: cover;
+}
+
 .jumbotron {
-    /* background-image: url(); */
     background-color: rgb(86, 20, 42);
     background-size: cover;
     color: white;
@@ -10,23 +14,22 @@
 }
 
 .nav-item button{
-    color: white !important;
+    color: rgb(138, 97, 133) !important;
 }
-.active{
-    color: rgb(58, 55, 55) !important;
-}
+
 
 
 .drink-btn{
-    background-color:brown;
+    background-color:rgb(86, 20, 42);
     color: white;
-    border-color: brown;
+    border-color: rgb(86, 20, 42);
 }
 .drink-btn:hover{
     background-color: grey;
     border-color: grey;
 }
+
 .drink-btn:active{
-    background-color:brown;
-    border-color: brown
+    background-color:rgb(86, 20, 42);
+    border-color: rgb(86, 20, 42)
 }

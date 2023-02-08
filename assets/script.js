@@ -250,7 +250,11 @@ document.querySelector(".drink-btn").addEventListener("click", function () {
         let foodAPI = foodURL + drinksArray[index] + foodId + foodKey + "&dishType=alcohol cocktail";
 
         Promise.all([
-            fetch(foodAPI),
+            fetch(foodAPI, {
+                headers: {
+                    "Accept-Language": "en"
+                }
+            }),
             fetch(drinkAPI, {
                 headers: {
                     "X-Api-Key": "Qi651/P1cNZMlzbO7KcHFw==j6GIGW3DJULCUbIq"
@@ -283,20 +287,20 @@ document.querySelector(".drink-btn").addEventListener("click", function () {
                 document.getElementById("drink-cards").appendChild(divCard);
             });
 
-            
-            drinkHistory.push(drinksArray[index])
-            console.log(drinkHistory)
-            localStorage.setItem("drinkHistory", JSON.stringify(drinkHistory))
 
-            
+        drinkHistory.push(drinksArray[index])
+        console.log(drinkHistory)
+        localStorage.setItem("drinkHistory", JSON.stringify(drinkHistory))
 
-            
+
+
+
     }
 });
 
 
-function getLastDrink(){
-    if(localStorage.getItem("drinkHistory")){
+function getLastDrink() {
+    if (localStorage.getItem("drinkHistory")) {
         drinkHistory = JSON.parse(localStorage.getItem("drinkHistory"))
     }
     for (let d = 0; d < drinkHistory.length && d < 3; d++) {
@@ -307,10 +311,14 @@ function getLastDrink(){
         let foodAPI = foodURL + drinkHistory[d] + foodId + foodKey + "&dishType=alcohol cocktail";
 
         Promise.all([
-            fetch(foodAPI),
+            fetch(foodAPI, {
+                headers: {
+                    "Accept-Language": "en"
+                }
+            }),
             fetch(drinkAPI, {
                 headers: {
-                    "X-Api-Key": "Qi651/P1cNZMlzbO7KcHFw==j6GIGW3DJULCUbIq"
+                    "X-Api-Key": "Qi651/P1cNZMlzbO7KcHFw==j6GIGW3DJULCUbIq",
                 }
             })
         ])
@@ -339,7 +347,7 @@ function getLastDrink(){
                 </div>`;
                 document.getElementById("drink-cards").appendChild(divCard);
             });
-            
+
     }
 
 }

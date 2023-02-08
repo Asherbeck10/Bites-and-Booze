@@ -179,6 +179,8 @@ function foodSearch(dishSearch) {
                 // let ingredientList = ingredient.join(", ");
                 let calories = Math.round(recipes.hits[i].recipe.calories);
                 let dishType = recipes.hits[i].recipe.dishType;
+                let recipeLink = recipes.hits[i].recipe.url
+                
 
                 let newDiv = document.createElement('div');
                 newDiv.classList.add("card");
@@ -198,6 +200,7 @@ function foodSearch(dishSearch) {
                     return `<li>${ingredient}</li>`
                 }).join("")}   
                         </ul>
+                        <a href="${recipeLink}" target="blank">Click here for the full recipe!</a>
                     </div>`;
                 cardsEl.appendChild(newDiv);
             }

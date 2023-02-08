@@ -157,7 +157,7 @@ function foodSearch(dishSearch) {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '2a8fd49437mshbdf1ea1b79875a2p1a77e9jsn52c0b56f707a',
+            'X-RapidAPI-Key': '47e6d4f5a8msh3bf3f52ec4ae6dfp1b820bjsn8fdebc238bd5',
             'X-RapidAPI-Host': 'edamam-recipe-search.p.rapidapi.com'
         }
     };

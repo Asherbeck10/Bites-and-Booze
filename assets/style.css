@@ -3,6 +3,10 @@ body{
     background-size: cover;
 }
 
+h5{
+    font-family: 'Unbounded', cursive;
+}
+
 .jumbotron {
     background-color: rgb(86, 20, 42);
     background-size: cover;
@@ -16,7 +20,6 @@ body{
 .nav-item button{
     color: rgb(138, 97, 133) !important;
 }
-
 
 
 .drink-btn{

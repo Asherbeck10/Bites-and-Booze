@@ -1,0 +1,39 @@
+body{
+    background-image: url(./images/background.jpg);
+    background-size: cover;
+}
+
+h5{
+    font-family: 'Unbounded', cursive;
+}
+
+.jumbotron {
+    background-color: rgb(86, 20, 42);
+    background-size: cover;
+    color: white;
+}
+
+.jumbotron h1{
+    font-family: 'Unbounded', cursive;
+}
+
+.nav-item button{
+    color: rgb(156, 125, 125) !important;
+}
+
+
+.drink-btn{
+    background-color:rgb(86, 20, 42);
+    color: white;
+    border-color: rgb(86, 20, 42);
+}
+.drink-btn:hover{
+    background-color: grey;
+    border-color: grey;
+}
+
+
+.drink-btn:active{
+    background-color:rgb(86, 20, 42);
+    border-color: rgb(86, 20, 42)
+}

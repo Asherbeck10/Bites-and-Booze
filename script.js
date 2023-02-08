@@ -183,7 +183,7 @@ function foodSearch(dishSearch) {
                 let newDiv = document.createElement('div');
                 newDiv.classList.add("card");
                 newDiv.innerHTML = `
-                    <img class="card-img-top" src="${img}" alt="...">
+                    <img class="card-img-top" src="${img}" alt="food-image">
                     <div class="card-body">
                         <h5 class="card-title">${foodLabel}</h5>
                     </div>

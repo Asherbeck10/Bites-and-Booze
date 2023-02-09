@@ -189,8 +189,6 @@ function displayDishCards(recipes) {
             </div>`;
         cardsEl.appendChild(newDiv);
 
-
-
     }
     setTimeout(() => {
         cardsEl.setAttribute("style", "visibility: visible; opacity: 1;");

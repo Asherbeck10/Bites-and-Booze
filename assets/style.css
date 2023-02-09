@@ -17,6 +17,10 @@ h5 {
     font-family: 'Unbounded', cursive;
 }
 
+#modal-text{
+    color: rgb(69, 66, 66)
+}
+
 .nav-item button {
     color: rgb(255, 255, 255) !important;
 

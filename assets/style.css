@@ -1,6 +1,6 @@
 body {
     background-image: url(./images/background.jpg);
-    background-size: cover;
+    background-size: auto 1920px;
 }
 
 h5 {
@@ -48,8 +48,24 @@ h5 {
     border-color: grey;
 }
 
-
 .drink-btn:active {
     background-color: rgb(86, 20, 42);
     border-color: rgb(86, 20, 42)
+}
+
+#modal {
+    color: initial;
+    font-style: initial;
+}
+
+.modal-title {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#food-cards {
+    transition: opacity 0.5s;
+}
+
+#drink-cards {
+    transition: opacity 0.5s;
 }

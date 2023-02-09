@@ -146,7 +146,7 @@ document.getElementById("search-button").addEventListener("click", function (eve
     } else {
 
         foodSearch(dishSearch);
-        localStorage.setItem("lastSearchedFood", dishSearch);
+        // localStorage.setItem("lastSearchedFood", dishSearch);
     }
 });
 
@@ -212,6 +212,7 @@ function foodSearch(dishSearch) {
                 showModal();
             } else {
                 displayDishCards(recipes);
+                localStorage.setItem("lastSearchedFood", dishSearch);
             }
         })
 }

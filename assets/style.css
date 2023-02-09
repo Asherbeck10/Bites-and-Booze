@@ -57,6 +57,19 @@ h5 {
     border-color: rgb(86, 20, 42)
 }
 
+#drinks{
+    padding-bottom: 30px;
+}
+
+.footer{
+    height: 60px;
+    background-color: rgb(86, 20, 42);
+    color: white;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Unbounded', cursive;
+}
+
 #food-cards {
     transition: opacity 0.5s;
 }

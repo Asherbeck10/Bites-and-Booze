@@ -1,6 +1,6 @@
 body {
     background-image: url(./images/background.jpg);
-    background-size: cover;
+    background-size: auto 1920px;
 }
 
 h5 {
@@ -17,7 +17,7 @@ h5 {
     font-family: 'Unbounded', cursive;
 }
 
-#modal-text{
+#modal-text {
     color: rgb(69, 66, 66)
 }
 
@@ -52,7 +52,6 @@ h5 {
     border-color: grey;
 }
 
-
 .drink-btn:active {
     background-color: rgb(86, 20, 42);
     border-color: rgb(86, 20, 42)
@@ -71,3 +70,10 @@ h5 {
     font-family: 'Unbounded', cursive;
 }
 
+#food-cards {
+    transition: opacity 0.5s;
+}
+
+#drink-cards {
+    transition: opacity 0.5s;
+}

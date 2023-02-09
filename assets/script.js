@@ -200,7 +200,11 @@ function foodSearch(dishSearch) {
                     return `<li>${ingredient}</li>`
                 }).join("")}   
                         </ul>
-                        <a href="${recipeLink}" target="blank">Click here for the full recipe!</a>
+                        <div style="text-align:center">
+                        <button class="btn drink-btn">
+                        <a href="${recipeLink}" target="blank" style="color:white; text-decoration:none; border:none">View full instructions</a>
+                        </button>
+                        </div>
                     </div>`;
                 cardsEl.appendChild(newDiv);
             }
